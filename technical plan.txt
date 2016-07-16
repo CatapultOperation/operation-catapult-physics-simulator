@@ -1,0 +1,26 @@
+main function with main loop for dispatching work to other methods/classes
+
+graphics class to take list of objects to draw, contain methods for drawing particle, field, etc
+it will also draw the menu sidebar
+
+event handler class to get mouse input for dragging particles, fields, etc onto screen.
+it will give information back to the main loop so that the particle can be rendered before being droppped.
+(particle should not interact with environment until it is dropped)
+once the particle is dropped, it will be handled like a normal particle and will be rendered through the system
+between the physics calculator and the graphics class
+
+physical system class to hold particle objects and static field objects. it will be called on each iteration of
+the main loop and will have methods to go through each particle object and static field object to call
+their methods for calculating change in position
+
+particle class will have properties of position, instantaneous velocity, mass. the instantaneous velocity can be
+calculated by dividing the previous position displacement by the period of time that passes between iterations
+of the main loop. it will have a method to calculate change in position; this method will take as an argument
+the other objects in the system that can influence the acceleration of the particle.
+(note the kinemetics equation: xf-xi = vi*t + 0.5*a*t^2, so we can calculate the change is position based on the
+current net acceleration on the particle)
+the particle class will also have a method that will be called from within the class that will calculate
+net magnetic field due to other moving charged particles
+
+static field class will have properties of boundaries (given by coordinates), direction, strength
+
