@@ -1,5 +1,7 @@
 from enum import Enum
+from math import sqrt
 
+from pygame import event
 import pygame
 
 
@@ -22,3 +24,7 @@ class GraphicalParticle:
         particleSurface = pygame.Surface(self.radius * 2, self.radius * 2)
         pygame.draw.circle(particleSurface, self.color, self.center, self.radius)
         screen.blit(particleSurface, (position[0] - self.radius, position[1] - self.radius))
+        
+    def mouseColision(self, event):
+         mouseDistance = sqrt((event.pos[0] - object.center[0]) ** 2 + (event.pos[1] - object.center[1]) ** 2)
+         return mouseDistance <= self.radius
