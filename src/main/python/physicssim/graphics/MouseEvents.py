@@ -1,27 +1,27 @@
 from math import *
 
 from pygame import *
-import GraphicalParticle
-import GraphicalField
+from src.main.python.physicssim.graphics.GraphicalParticle import GraphicalParticle
+from src.main.python.physicssim.graphics.GraphicalField import GraphicalField
 
 
-def events(screen, objects, events):
+def handleEvents(screen, objects, events):
     
-    for object in objects:
+    for obj in objects:
         for event in events: 
             if event.type == QUIT: 
                 return
             
             if event.type == MOUSEBUTTONDOWN: 
-                movestate = object.mouseColision(event)
+                movestate = obj.mouseCollision(event)
             
             if event.type == MOUSEBUTTONUP: 
                 moveState = False
             
             if event.type == MOUSEMOTION: 
                 if moveState: 
-                    if object.instanceof(GraphicalParticle):
-                        object.center[0] += event.rel[0]
-                        object.center[1] += event.rel[1]
-                    elif object.instanceof(GraphicalField): 
-                        object.rect.move(event.rel)
+                    if obj.instanceof(GraphicalParticle):
+                        obj.center[0] += event.rel[0]
+                        obj.center[1] += event.rel[1]
+                    elif obj.instanceof(GraphicalField):
+                        obj.rect.move(event.rel)

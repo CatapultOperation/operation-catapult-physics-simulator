@@ -28,7 +28,7 @@ class GraphicalField:
         pygame.draw.rect(rectSurface, self.color, self.rect, 1)
         screen.blit(rectSurface, position)
         
-    def mouseColision(self, event):
+    def mouseCollision(self, event):
         return self.rect.collidepoint(event.pos())
         
     def initArrows(self):

@@ -3,22 +3,19 @@ from math import *
 import pygame
 from pygame.locals import *
 
-<<<<<<< HEAD
-from MouseEvents import *
-from GraphicalParticle import GraphicalParticle
-=======
-import MouseEvents as mouse
->>>>>>> 466e371c83dfa0ba164515d6446e7e569266457b
+from src.main.python.physicssim.graphics.GraphicalParticle import GraphicalParticle
+from src.main.python.physicssim.graphics.GraphicalField import GraphicalField
+import src.main.python.physicssim.graphics.MouseEvents as eventHandler
 
 
 def render(screen, objects):
     screen.fill((255, 255, 255))
     
-    for object in objects: 
-        object.update()
-        object.draw()
+    for obj in objects:
+        obj.update()
+        obj.draw()
     
     pygame.display.flip()
 
 def events(screen, objects, events):
-    mouse.events(screen, objects, events)
+    eventHandler.handleEvents(screen, objects, events)
