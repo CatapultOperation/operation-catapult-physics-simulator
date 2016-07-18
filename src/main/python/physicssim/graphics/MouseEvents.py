@@ -1,6 +1,8 @@
 from math import *
 
 from pygame import *
+import GraphicalParticle
+import GraphicalField
 
 
 def events(screen, objects, events):
@@ -11,15 +13,15 @@ def events(screen, objects, events):
                 return
             
             if event.type == MOUSEBUTTONDOWN: 
-                mouseDistance = sqrt((event.pos[0] - object.center[0]) ** 2 + (event.pos[1] - object.center[1]) ** 2)
-                
-                if mouseDistance <= object.radius: 
-                    moveState = True
+                movestate = object.mouseColision(event)
             
             if event.type == MOUSEBUTTONUP: 
                 moveState = False
             
             if event.type == MOUSEMOTION: 
                 if moveState: 
-                    object.center[0] += event.rel[0]
-                    object.center[1] += event.rel[1]
+                    if object.instanceof(GraphicalParticle):
+                        object.center[0] += event.rel[0]
+                        object.center[1] += event.rel[1]
+                    elif object.instanceof(GraphicalField): 
+                        object.rect.move(event.rel)

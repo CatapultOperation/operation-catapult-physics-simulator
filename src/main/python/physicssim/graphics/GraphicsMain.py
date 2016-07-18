@@ -4,14 +4,14 @@ import pygame
 from pygame.locals import *
 
 import MouseEvents as mouse
-import GraphicalParticle
 
 
 def render(screen, objects):
     screen.fill((255, 255, 255))
     
     for object in objects: 
-        pygame.draw.circle(screen, object.color, object.center, object.radius)
+        object.update()
+        object.draw()
     
     pygame.display.flip()
 

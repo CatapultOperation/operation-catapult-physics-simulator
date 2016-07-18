@@ -1,7 +1,7 @@
 from enum import Enum
 
-import pygame
 from pygame import surface
+import pygame
 
 
 class Direction(Enum):
@@ -27,6 +27,9 @@ class GraphicalField:
         self.drawArrow(screen)
         pygame.draw.rect(rectSurface, self.color, self.rect, 1)
         screen.blit(rectSurface, position)
+        
+    def mouseColision(self, event):
+        return self.rect.collidepoint(event.pos())
         
     def initArrows(self):
         arrowEast = pygame.Surface((30, 10))
