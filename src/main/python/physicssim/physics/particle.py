@@ -1,27 +1,120 @@
+import math
+
 class Particle:
-	def __init__(self, position, mass, charge):
-		"""Takes position as tuple (x, y), mass, and change (sign indicates positive or negative)"""
+	def __init__(self, position, mass, charge, timeInterval):
+		"""Takes position as list [x, y], mass, charge (sign indicates positive or negative), and the
+		amount of time that passes between value calculations (the time between frames shown)"""
 		self.pos = position
 		self.mass = mass
-		self.velocity = (0, 0)
+		self.velocity = [0, 0]
 		self.charge = charge
+		self.timeInterval = timeInterval
 
-	def getPosition(self):
-		"""returns position of particle as tuple (x, y)"""
-		return self.pos
+	def getPos(self):
+		"""returns position of particle as list [x, y]"""
+		return [self.pos[0], self.pos[1]]
 
 	def getMass(self):
 		"""returns mass of particle"""
 		return self.mass
 
 	def getVelocity(self):
-		"""return velocity of partice as tuple (x component, y component)"""
-		return self.velocity
+		"""return velocity of partice as list [x component, y component]"""
+		return [self.velocity[0], self.velocity[1]]
 
 	def getCharge(self):
 		"""returns charge of particle"""
 		return self.charge
 
+	@staticmethod
+	def sinatan(x):
+		"""Internally used function, returns sine of the arc tangent of the parameter"""
+		return x/math.sqrt((x**2)+1)
+
+	@staticmethod
+	def cosatan(x):
+		"""Internally used function, returns cosine of the arc tangent of the parameter"""
+		return 1 / math.sqrt((x ** 2) + 1)
+
+
+	@staticmethod
+	def distance(pos1, pos2):
+		"""Internally used function, takes 2 position tuples (x, y) and returns the distance between them"""
+		return ((pos1[0]-pos2[0])**2 + (pos1[1]-pos2[1])**2)**0.5
+
+	@classmethod
+	def crossProduct(cls, vec1, vec2):
+		"""Internally used function, takes 2 2-D vectors as tuples and returns the magnitude (with sign)
+		of the resulting cross product"""
+		theta1 = math.atan(vec1[1]/vec1[0])
+		theta2 = math.atan(vec2[1]/vec2[0])
+		mag1 = cls.distance((0, 0), vec1)
+		mag2 = cls.distance((0,0),  vec2)
+		return math.sin(theta1-theta2)*mag1*mag2
+
+	def calculateNetMagneticFieldForce(self, particleList):
+		"""Internally used method, returns force due to magnetic field effects
+		as tuple (x component, y component)"""
+		netMagField = 0
+		for p in particleList:
+			displacementVec = (p.getPos()[0] - self.pos[0], p.getPos()[1] - self.pos[1])
+			cross = self.crossProduct(p.getVelocity(), displacementVec)
+			distance = self.distance((0, 0), displacementVec)
+			netMagField += (10**-7) * p.getCharge() * cross/distance
+		magnitudeV = self.distance((0, 0), self.velocity)
+		magnitudeF = magnitudeV * netMagField
+		#subtract pi/2 from angle of v to get angle of f
+		angleV = math.atan(self.velocity[1]/self.velocity[0])
+		angleF = angleV - math.pi/2
+		return magnitudeF*math.cos(angleF), magnitudeF*math.sin(angleF)
+
+	def calculateNetCoulombsLawForce(self, particleList):
+		"""Internally used method, returns force due to electric interaction with other charged particles
+		as tuple (x component, y component)"""
+		force = [0, 0]
+		for p in particleList:
+			magnitude = 8.99*(10**9) * self.charge * p.getCharge() / (self.distance(self.pos, p.getPos())**2)
+			#special case so that we don't get division by zero
+			if self.pos[0] - p.getPos()[1] == 0:
+				force[0] += 0
+				force[1] += magnitude
+			else:
+				angleSlope = (self.pos[1]-p.getPos()[1])/(self.pos[0]-p.getPos()[0])
+				force[0] += self.cosatan(angleSlope)*magnitude
+				force[1] += self.sinatan(angleSlope)*magnitude
+		return force[0], force[1]
+
+
+
+	def calculateNetElectricFieldForce(self, staticFieldList):
+		"""Internally used method, returns force due to influence of static electric field on particle
+		as tuple (x component, y component)"""
+		force = [0, 0]
+		for ef in staticFieldList:
+			magnitude = self.charge * ef.getStrength()
+			force[0] += magnitude*math.cos(ef.getDirection)
+			force[1] += magnitude*math.sin(ef.getDirection)
+		return force[0], force[1]
+
+
 	def calculateDisplacement(self, particleList, staticFieldList):
-		"""takes list of other particles and static fields in the system
-		returns the change in position as tuple (x, y) for period of time elapsed by main loop"""
+		"""takes list of other particles and static fields in the system,
+		updates internal dx and dy variables"""
+		mff = self.calculateNetMagneticFieldForce(particleList)
+		clf = self.calculateNetCoulombsLawForce(particleList)
+		eff = self.calculateNetElectricFieldForce(staticFieldList)
+		acceleration = ((mff[0]+clf[0]+eff[0])/self.mass, (mff[1]+clf[1]+eff[1])/self.mass)
+		#change in velocity is acceleration*time
+		self.newVelocity = (self.velocity[0] + acceleration[0]*self.timeInterval,
+							self.velocity[1] + acceleration[1]*self.timeInterval)
+		self.dx = self.velocity[0]*self.timeInterval + 0.5*acceleration[0]*self.timeInterval
+		self.dy = self.velocity[1]*self.timeInterval + 0.5*acceleration[1]*self.timeInterval
+
+
+	def finalizeValues(self):
+		"""Indicates to particle object that all other particle object calculations are done,
+		so that internal values can be updated and used for rendering"""
+		self.pos = (self.pos[0] + self.dx, self.pos[1] + self.dy)
+		self.velocity = self.newVelocity
+
+
