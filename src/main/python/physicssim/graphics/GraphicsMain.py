@@ -3,11 +3,12 @@ from math import *
 import pygame
 from pygame.locals import *
 
-import mouseEvents as mouse
+import MouseEvents as mouse
+import GraphicalParticle
 
 
 def render(screen, objects):
-    screen.fill((0, 0, 0))
+    screen.fill((255, 255, 255))
     
     for object in objects: 
         pygame.draw.circle(screen, object.color, object.center, object.radius)
