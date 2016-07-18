@@ -12,7 +12,6 @@ class Direction(Enum):
 
 class GraphicalField:
     def __init__(self, rect, direction, strength, color=(0, 0, 0)):
-        self.spacing = 10
         self.rect = rect
         self.direction = direction
         self.update(strength)

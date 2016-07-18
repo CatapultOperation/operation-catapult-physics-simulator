@@ -1,8 +1,8 @@
 from enum import Enum
 from math import sqrt
 
-from pygame import event
 import pygame
+
 
 
 class Charge(Enum):

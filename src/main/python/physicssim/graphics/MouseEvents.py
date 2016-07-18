@@ -6,14 +6,15 @@ from src.main.python.physicssim.graphics.GraphicalField import GraphicalField
 
 
 def handleEvents(screen, objects, events):
-    
+
     for obj in objects:
         for event in events: 
             if event.type == QUIT: 
                 return
-            
+
+            moveState = False
             if event.type == MOUSEBUTTONDOWN: 
-                movestate = obj.mouseCollision(event)
+                moveState = obj.mouseCollision(event)
             
             if event.type == MOUSEBUTTONUP: 
                 moveState = False
