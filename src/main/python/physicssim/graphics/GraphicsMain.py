@@ -3,8 +3,8 @@ from math import *
 import pygame
 from pygame.locals import *
 
-import MouseEvents as mouse
-import GraphicalParticle
+from MouseEvents import *
+from GraphicalParticle import GraphicalParticle
 
 
 def render(screen, objects):
