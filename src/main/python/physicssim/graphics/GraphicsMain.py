@@ -12,7 +12,10 @@ def render(screen, particleList, fieldList):
 	"""Takes as arguments screen (pygame screen), particleList (list of physical particles),
 	and fieldList (list of physical fields"""
 	screen.fill((255, 255, 255))
-	#TODO: go through each element in both lists and draw them
+	for p in particleList:
+		p.draw(screen)
+	for f in fieldList:
+		f.draw(screen)
 
 	pygame.display.flip()
 

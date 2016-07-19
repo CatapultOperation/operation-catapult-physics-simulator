@@ -1,15 +1,21 @@
 import pygame
 
 import src.main.python.physicssim.graphics.GraphicsMain as graphics
+from src.main.python.physicssim.physics.particle import Particle
+from src.main.python.physicssim.physics.staticfield import StaticField
+from src.main.python.physicssim.graphics.GraphicalField import Direction
 
 
 pygame.init()
 clock = pygame.time.Clock()
-screen = pygame.display.set_mode((400, 400))
+screen = pygame.display.set_mode((800, 800))
 particleList = []
 fieldList = []
 
-#TODO: put a graphics type object into each physical type object and handle updating between them
+def tempInitLists():
+	particleList.append(Particle((50, 50), 2, 1, 1/30))
+	particleList.append(Particle((350, 700), 1, -1, 1/30))
+	fieldList.append(StaticField((120, 30), (180, 160), 1, Direction.EAST))
 
 def update():
 	for p in particleList:
@@ -27,4 +33,5 @@ def mainLoop():
 		update()
 		clock.tick(30)
 
-
+tempInitLists()
+mainLoop()

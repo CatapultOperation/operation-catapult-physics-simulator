@@ -1,4 +1,6 @@
 import math
+from src.main.python.physicssim.graphics.GraphicalParticle import GraphicalParticle
+from src.main.python.physicssim.graphics.GraphicalParticle import Charge
 
 class Particle:
 	def __init__(self, position, mass, charge, timeInterval):
@@ -9,6 +11,9 @@ class Particle:
 		self.velocity = [0, 0]
 		self.charge = charge
 		self.timeInterval = timeInterval
+		#setting radius to 20x the mass of particle, can change later
+		self.graphicalParticle = GraphicalParticle(self.pos, self.mass*20, Charge.NEGATIVE if self.charge < 0 else Charge.POSITIVE)
+
 
 	def getPos(self):
 		"""returns position of particle as list [x, y]"""
@@ -42,12 +47,24 @@ class Particle:
 		"""Internally used function, takes 2 position tuples (x, y) and returns the distance between them"""
 		return ((pos1[0]-pos2[0])**2 + (pos1[1]-pos2[1])**2)**0.5
 
+	@staticmethod
+	def arcTanWithChecks(x, y):
+		"""Performs the arctangent function on the given fraction (y/x)and handles division by zero"""
+		if x == 0 and y > 0:
+			return math.pi / 2
+		elif x == 0 and y < 0:
+			return 3 * math.pi / 4
+		elif x == 0 and y == 0:
+			return 0
+		else:
+			return math.atan(y/x)
+
 	@classmethod
 	def crossProduct(cls, vec1, vec2):
 		"""Internally used function, takes 2 2-D vectors as tuples and returns the magnitude (with sign)
 		of the resulting cross product"""
-		theta1 = math.atan(vec1[1]/vec1[0])
-		theta2 = math.atan(vec2[1]/vec2[0])
+		theta1 = cls.arcTanWithChecks(vec1[0], vec1[1])
+		theta2 = cls.arcTanWithChecks(vec2[0], vec2[1])
 		mag1 = cls.distance((0, 0), vec1)
 		mag2 = cls.distance((0,0),  vec2)
 		return math.sin(theta1-theta2)*mag1*mag2
@@ -57,14 +74,15 @@ class Particle:
 		as tuple (x component, y component)"""
 		netMagField = 0
 		for p in particleList:
-			displacementVec = (p.getPos()[0] - self.pos[0], p.getPos()[1] - self.pos[1])
-			cross = self.crossProduct(p.getVelocity(), displacementVec)
-			distance = self.distance((0, 0), displacementVec)
-			netMagField += (10**-7) * p.getCharge() * cross/distance
+			if not(p is self):
+				displacementVec = (p.getPos()[0] - self.pos[0], p.getPos()[1] - self.pos[1])
+				cross = self.crossProduct(p.getVelocity(), displacementVec)
+				distance = self.distance((0, 0), displacementVec)
+				netMagField += (10**-7) * p.getCharge() * cross/distance
 		magnitudeV = self.distance((0, 0), self.velocity)
 		magnitudeF = magnitudeV * netMagField
 		#subtract pi/2 from angle of v to get angle of f
-		angleV = math.atan(self.velocity[1]/self.velocity[0])
+		angleV = self.arcTanWithChecks(self.velocity[0], self.velocity[1])
 		angleF = angleV - math.pi/2
 		return magnitudeF*math.cos(angleF), magnitudeF*math.sin(angleF)
 
@@ -73,15 +91,16 @@ class Particle:
 		as tuple (x component, y component)"""
 		force = [0, 0]
 		for p in particleList:
-			magnitude = 8.99*(10**9) * self.charge * p.getCharge() / (self.distance(self.pos, p.getPos())**2)
-			#special case so that we don't get division by zero
-			if self.pos[0] - p.getPos()[1] == 0:
-				force[0] += 0
-				force[1] += magnitude
-			else:
-				angleSlope = (self.pos[1]-p.getPos()[1])/(self.pos[0]-p.getPos()[0])
-				force[0] += self.cosatan(angleSlope)*magnitude
-				force[1] += self.sinatan(angleSlope)*magnitude
+			if not(p is self):
+				magnitude = 8.99*(10**9) * self.charge * p.getCharge() / (self.distance(self.pos, p.getPos())**2)
+				#special case so that we don't get division by zero
+				if self.pos[0] - p.getPos()[1] == 0:
+					force[0] += 0
+					force[1] += magnitude
+				else:
+					angleSlope = (self.pos[1]-p.getPos()[1])/(self.pos[0]-p.getPos()[0])
+					force[0] += self.cosatan(angleSlope)*magnitude
+					force[1] += self.sinatan(angleSlope)*magnitude
 		return force[0], force[1]
 
 
@@ -92,8 +111,8 @@ class Particle:
 		force = [0, 0]
 		for ef in staticFieldList:
 			magnitude = self.charge * ef.getStrength()
-			force[0] += magnitude*math.cos(ef.getDirection)
-			force[1] += magnitude*math.sin(ef.getDirection)
+			force[0] += magnitude*math.cos(ef.getDirection())
+			force[1] += magnitude*math.sin(ef.getDirection())
 		return force[0], force[1]
 
 
@@ -116,5 +135,10 @@ class Particle:
 		so that internal values can be updated and used for rendering"""
 		self.pos = (self.pos[0] + self.dx, self.pos[1] + self.dy)
 		self.velocity = self.newVelocity
+		self.graphicalParticle.update(self.pos, self.mass*20, Charge.NEGATIVE if self.charge < 0 else Charge.POSITIVE)
+
+	def draw(self, screen):
+		"""Draws objects using GraphicalParticle"""
+		self.graphicalParticle.draw(screen)
 
 
