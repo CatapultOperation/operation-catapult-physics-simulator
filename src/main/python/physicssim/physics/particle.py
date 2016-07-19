@@ -94,13 +94,13 @@ class Particle:
 			if not(p is self):
 				magnitude = 8.99*(10**9) * self.charge * p.getCharge() / (self.distance(self.pos, p.getPos())**2)
 				#special case so that we don't get division by zero
-				if self.pos[0] - p.getPos()[1] == 0:
+				if self.pos[0] - p.getPos()[0] == 0:
 					force[0] += 0
 					force[1] += magnitude
 				else:
 					angleSlope = (self.pos[1]-p.getPos()[1])/(self.pos[0]-p.getPos()[0])
-					force[0] += self.cosatan(angleSlope)*magnitude
-					force[1] += self.sinatan(angleSlope)*magnitude
+					force[0] += self.cosatan(angleSlope)*magnitude * -math.copysign(1.0, self.pos[0]-p.getPos()[0])
+					force[1] += self.sinatan(angleSlope)*magnitude * -math.copysign(1.0, self.pos[0]-p.getPos()[0])
 		return force[0], force[1]
 
 
