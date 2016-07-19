@@ -22,7 +22,7 @@ class GraphicalParticle:
 
     def draw(self, screen):
         #particleSurface = pygame.Surface((self.radius * 2, self.radius * 2))
-        pygame.draw.circle(screen, self.color, (int(self.center[0]), int(self.center[1])), self.radius)
+        pygame.draw.circle(screen, self.color, (int(self.center[0]), int(self.center[1])), int(self.radius))
         #screen.blit(particleSurface, (self.center[0] - self.radius, self.center[1] - self.radius))
         
     def mouseCollision(self, event):
