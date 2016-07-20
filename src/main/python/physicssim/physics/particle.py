@@ -1,7 +1,6 @@
 import math
 
-from main.python.physicssim.graphics.GraphicalParticle import Charge, \
-	GraphicalParticle
+from src.main.python.physicssim.graphics.GraphicalParticle import Charge, GraphicalParticle
 
 
 class Particle:
@@ -16,9 +15,9 @@ class Particle:
 		self.timeInterval = timeInterval
 		#setting radius to 20x the mass of particle, can change later
 		if self.charge < 0: 
-			self.graphicalObject = GraphicalParticle(self.pos, self.mass*20,  Charge.NEGATIVE)
+			self.graphicalObject = GraphicalParticle(self.pos, self.mass*20, Charge.NEGATIVE, (0, 0, 255))
 		else: 
-			self.graphicalObject = GraphicalParticle(self.pos, self.mass*20,  Charge.POSITIVE)
+			self.graphicalObject = GraphicalParticle(self.pos, self.mass*20, Charge.POSITIVE, (255, 0, 0))
 		
 
 
@@ -106,8 +105,8 @@ class Particle:
 					force[1] += magnitude
 				else:
 					angleSlope = (self.pos[1]-p.getPos()[1])/(self.pos[0]-p.getPos()[0])
-					force[0] += self.cosatan(angleSlope)*magnitude * -math.copysign(1.0, self.pos[0]-p.getPos()[0])
-					force[1] += self.sinatan(angleSlope)*magnitude * -math.copysign(1.0, self.pos[0]-p.getPos()[0])
+					force[0] += self.cosatan(angleSlope)*magnitude * math.copysign(1.0, self.pos[0]-p.getPos()[0])
+					force[1] += self.sinatan(angleSlope)*magnitude * math.copysign(1.0, self.pos[0]-p.getPos()[0])
 		return force[0], force[1]
 
 

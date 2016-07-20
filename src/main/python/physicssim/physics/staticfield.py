@@ -1,7 +1,6 @@
 import math
 
-from main.python.physicssim.graphics.GraphicalField import Direction, \
-	GraphicalField
+from src.main.python.physicssim.graphics.GraphicalField import Direction, GraphicalField
 
 
 class StaticField:
