@@ -133,15 +133,16 @@ class Particle:
 	def calculateDisplacement(self, particleList, staticFieldList):
 		"""takes list of other particles and static fields in the system,
 		updates internal dx and dy variables"""
-		mff = self.calculateNetMagneticFieldForce(particleList)
-		clf = self.calculateNetCoulombsLawForce(particleList)
-		eff = self.calculateNetElectricFieldForce(staticFieldList)
-		acceleration = ((mff[0]+clf[0]+eff[0])/self.mass, (mff[1]+clf[1]+eff[1])/self.mass)
-		#change in velocity is acceleration*time
-		self.newVelocity = (self.velocity[0] + acceleration[0]*self.timeInterval,
-							self.velocity[1] + acceleration[1]*self.timeInterval)
-		self.dx = self.velocity[0]*self.timeInterval + 0.5*acceleration[0]*self.timeInterval
-		self.dy = self.velocity[1]*self.timeInterval + 0.5*acceleration[1]*self.timeInterval
+		if not self.moveState:
+			mff = self.calculateNetMagneticFieldForce(particleList)
+			clf = self.calculateNetCoulombsLawForce(particleList)
+			eff = self.calculateNetElectricFieldForce(staticFieldList)
+			acceleration = ((mff[0]+clf[0]+eff[0])/self.mass, (mff[1]+clf[1]+eff[1])/self.mass)
+			#change in velocity is acceleration*time
+			self.newVelocity = (self.velocity[0] + acceleration[0]*self.timeInterval,
+								self.velocity[1] + acceleration[1]*self.timeInterval)
+			self.dx = self.velocity[0]*self.timeInterval + 0.5*acceleration[0]*self.timeInterval
+			self.dy = self.velocity[1]*self.timeInterval + 0.5*acceleration[1]*self.timeInterval
 
 
 	def finalizeValues(self):
