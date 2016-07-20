@@ -18,7 +18,6 @@ def handleEvents(screen, particleList, fieldList, events):
 
             if event.type == MOUSEBUTTONDOWN: 
                 particle.moveState = particle.graphicalObject.mouseCollision(event)
-                print(particle.graphicalObject.moveState)
             
             elif event.type == MOUSEBUTTONUP: 
                 particle.moveState = False
@@ -38,7 +37,6 @@ def handleEvents(screen, particleList, fieldList, events):
 
             if event.type == MOUSEBUTTONDOWN: 
                 field.moveState = field.graphicalObject.mouseCollision(event)
-                print(field.graphicalObject.moveState)
             
             elif event.type == MOUSEBUTTONUP: 
                 field.moveState = False

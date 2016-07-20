@@ -11,14 +11,13 @@ class Direction(Enum):
 	WEST = 4
 
 class GraphicalField:
-	def __init__(self, topLeft, bottomRight, direction, strength, color=(0, 0, 255), moveState=False):
+	def __init__(self, topLeft, bottomRight, direction, strength, color=(0, 0, 255)):
 		self.spacing = strength
 		self.topLeft = topLeft
 		self.bottomRight = bottomRight
 		self.rect = pygame.Rect(topLeft, (bottomRight[0] - topLeft[0], bottomRight[1] - topLeft[1]))
 		self.direction = direction
 		self.color = color
-		self.moveState = moveState
 		self.initArrows()
 
 	def update(self, topLeft, bottomRight, direction, strength, color=(0, 0, 255)):

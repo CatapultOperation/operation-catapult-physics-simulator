@@ -8,6 +8,7 @@ class StaticField:
 	def __init__(self, topLeft, bottomRight, strength, cardinalDirection):
 		"""Takes arguments topLeft as list [x, y], bottomRight as list [x, y], strength (in N/C),
 		and cardinalDirection as an enum from GraphicalField"""
+		self.moveState = False
 		self.topLeft = topLeft
 		self.bottomRight = bottomRight
 		self.strength = strength

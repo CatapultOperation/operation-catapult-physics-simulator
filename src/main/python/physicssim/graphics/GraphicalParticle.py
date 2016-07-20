@@ -9,12 +9,11 @@ class Charge(Enum):
     NEGATIVE = 2
 
 class GraphicalParticle:
-    def __init__(self, center, radius, charge, color=(255, 0, 0), moveState=False):
+    def __init__(self, center, radius, charge, color=(255, 0, 0)):
         self.center = center
         self.radius = radius
         self.charge = charge
         self.color = color
-        self.moveState = moveState
         
     def update(self, center, radius, charge, color=(255, 0, 0)):
         self.center = center
