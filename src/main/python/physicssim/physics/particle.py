@@ -133,7 +133,11 @@ class Particle:
 	def calculateDisplacement(self, particleList, staticFieldList):
 		"""takes list of other particles and static fields in the system,
 		updates internal dx and dy variables"""
-		if not self.moveState:
+		if self.moveState:
+			self.newVelocity = (0, 0)
+			self.dx = 0
+			self.dy = 0
+		else:
 			mff = self.calculateNetMagneticFieldForce(particleList)
 			clf = self.calculateNetCoulombsLawForce(particleList)
 			eff = self.calculateNetElectricFieldForce(staticFieldList)
