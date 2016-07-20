@@ -1,9 +1,9 @@
 import pygame
 
-import src.main.python.physicssim.graphics.GraphicsMain as graphics
-from src.main.python.physicssim.physics.particle import Particle
-from src.main.python.physicssim.physics.staticfield import StaticField
-from src.main.python.physicssim.graphics.GraphicalField import Direction
+import main.python.physicssim.graphics.GraphicsMain as graphics
+from main.python.physicssim.graphics.GraphicalField import Direction
+from main.python.physicssim.physics.particle import Particle
+from main.python.physicssim.physics.staticfield import StaticField
 
 
 pygame.init()
@@ -13,10 +13,9 @@ particleList = []
 fieldList = []
 
 def tempInitLists():
-	pass
-	particleList.append(Particle((300, 300), 2, .05, 1/30))
-	particleList.append(Particle((600, 600), 1, -.05, 1/30))
-	fieldList.append(StaticField((30, 30), (400, 400), 1000, Direction.EAST))
+	particleList.append(Particle([300, 300], 2, .01, 1/30))
+	#particleList.append(Particle([600, 600], 1, -.01, 1/30))
+	fieldList.append(StaticField([30, 30], [400, 400], 1000, Direction.EAST))
 
 def update():
 	for p in particleList:
@@ -27,11 +26,12 @@ def update():
 	graphics.render(screen, particleList, fieldList)
 	events = pygame.event.get()
 	#concats lists because event handler doesn't need them in separate lists
-	graphics.events(screen, particleList + fieldList, events)
+	return graphics.events(screen, particleList, fieldList, events)
 
 def mainLoop():
 	while True:
-		update()
+		if update(): 
+			return
 		clock.tick(30)
 
 tempInitLists()

@@ -2,10 +2,7 @@ from math import *
 
 import pygame
 from pygame.locals import *
-
-from src.main.python.physicssim.graphics.GraphicalParticle import GraphicalParticle
-from src.main.python.physicssim.graphics.GraphicalField import GraphicalField
-import src.main.python.physicssim.graphics.MouseEvents as eventHandler
+import main.python.physicssim.graphics.MouseEvents as eventHandler
 
 
 def render(screen, particleList, fieldList):
@@ -20,5 +17,5 @@ def render(screen, particleList, fieldList):
 
 	pygame.display.flip()
 
-def events(screen, objects, events):
-	eventHandler.handleEvents(screen, objects, events)
+def events(screen, particleList, fieldList, events):
+	return eventHandler.handleEvents(screen, particleList, fieldList, events)

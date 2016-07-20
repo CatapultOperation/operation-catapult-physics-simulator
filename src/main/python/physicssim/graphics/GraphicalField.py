@@ -3,6 +3,7 @@ from enum import Enum
 from pygame import surface
 import pygame
 
+
 class Direction(Enum):
 	NORTH = 1
 	EAST = 2
@@ -10,13 +11,14 @@ class Direction(Enum):
 	WEST = 4
 
 class GraphicalField:
-	def __init__(self, topLeft, bottomRight, direction, strength, color=(0, 0, 255)):
+	def __init__(self, topLeft, bottomRight, direction, strength, color=(0, 0, 255), moveState=False):
 		self.spacing = strength
 		self.topLeft = topLeft
 		self.bottomRight = bottomRight
 		self.rect = pygame.Rect(topLeft, (bottomRight[0] - topLeft[0], bottomRight[1] - topLeft[1]))
 		self.direction = direction
 		self.color = color
+		self.moveState = moveState
 		self.initArrows()
 
 	def update(self, topLeft, bottomRight, direction, strength, color=(0, 0, 255)):
@@ -37,7 +39,7 @@ class GraphicalField:
 		screen.blit(rectSurface, self.topLeft)
 
 	def mouseCollision(self, event):
-		return self.rect.collidepoint(event.pos()[0], event.pos()[1])
+		return self.rect.collidepoint(event.pos)
 
 	def initArrows(self):
 		self.arrowEast = pygame.Surface((30, 10))

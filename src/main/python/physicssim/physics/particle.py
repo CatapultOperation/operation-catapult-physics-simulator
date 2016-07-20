@@ -1,6 +1,8 @@
 import math
-from src.main.python.physicssim.graphics.GraphicalParticle import GraphicalParticle
-from src.main.python.physicssim.graphics.GraphicalParticle import Charge
+
+from main.python.physicssim.graphics.GraphicalParticle import Charge, \
+	GraphicalParticle
+
 
 class Particle:
 	def __init__(self, position, mass, charge, timeInterval):
@@ -12,7 +14,11 @@ class Particle:
 		self.charge = charge
 		self.timeInterval = timeInterval
 		#setting radius to 20x the mass of particle, can change later
-		self.graphicalParticle = GraphicalParticle(self.pos, self.mass*20, Charge.NEGATIVE if self.charge < 0 else Charge.POSITIVE)
+		if self.charge < 0: 
+			self.graphicalObject = GraphicalParticle(self.pos, self.mass*20,  Charge.NEGATIVE)
+		else: 
+			self.graphicalObject = GraphicalParticle(self.pos, self.mass*20,  Charge.POSITIVE)
+		
 
 
 	def getPos(self):
@@ -140,12 +146,12 @@ class Particle:
 	def finalizeValues(self):
 		"""Indicates to particle object that all other particle object calculations are done,
 		so that internal values can be updated and used for rendering"""
-		self.pos = (self.pos[0] + self.dx, self.pos[1] + self.dy)
+		self.pos = [self.pos[0] + self.dx, self.pos[1] + self.dy]
 		self.velocity = self.newVelocity
-		self.graphicalParticle.update(self.pos, self.mass*20, Charge.NEGATIVE if self.charge < 0 else Charge.POSITIVE)
+		self.graphicalObject.update(self.pos, self.mass*20, Charge.NEGATIVE if self.charge < 0 else Charge.POSITIVE)
 
 	def draw(self, screen):
 		"""Draws objects using GraphicalParticle"""
-		self.graphicalParticle.draw(screen)
+		self.graphicalObject.draw(screen)
 
 

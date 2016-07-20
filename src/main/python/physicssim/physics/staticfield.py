@@ -1,10 +1,12 @@
-from src.main.python.physicssim.graphics.GraphicalField import GraphicalField
-from src.main.python.physicssim.graphics.GraphicalField import Direction
 import math
+
+from main.python.physicssim.graphics.GraphicalField import Direction, \
+	GraphicalField
+
 
 class StaticField:
 	def __init__(self, topLeft, bottomRight, strength, cardinalDirection):
-		"""Takes arguments topLeft as tuple (x, y), bottomRight as tuple (x, y), strength (in N/C),
+		"""Takes arguments topLeft as list [x, y], bottomRight as list [x, y], strength (in N/C),
 		and cardinalDirection as an enum from GraphicalField"""
 		self.topLeft = topLeft
 		self.bottomRight = bottomRight
@@ -18,7 +20,7 @@ class StaticField:
 			self.direction = 3*math.pi/2
 		elif self.cardinalDirection == Direction.WEST:
 			self.direction = math.pi
-		self.graphicalField = GraphicalField(topLeft, bottomRight, self.cardinalDirection, self.strength)
+		self.graphicalObject = GraphicalField(topLeft, bottomRight, self.cardinalDirection, self.strength)
 
 	def getTopLeft(self):
 		"""returns top left coordinate of field as tuple (x, y)"""
@@ -38,4 +40,4 @@ class StaticField:
 
 	def draw(self, screen):
 		"""Draws object by using GraphicalField object, takes pygame screen as argument"""
-		self.graphicalField.draw(screen)
+		self.graphicalObject.draw(screen)
