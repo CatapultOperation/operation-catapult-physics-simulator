@@ -8,6 +8,7 @@ class Particle:
 	def __init__(self, position, mass, charge, timeInterval):
 		"""Takes position as list [x, y], mass, charge (sign indicates positive or negative), and the
 		amount of time that passes between value calculations (the time between frames shown)"""
+		self.moveState = False
 		self.pos = position
 		self.mass = mass
 		self.velocity = [0, 0]

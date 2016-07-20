@@ -17,14 +17,14 @@ def handleEvents(screen, particleList, fieldList, events):
                 quitState = True
 
             if event.type == MOUSEBUTTONDOWN: 
-                particle.graphicalObject.moveState = particle.graphicalObject.mouseCollision(event)
+                particle.moveState = particle.graphicalObject.mouseCollision(event)
                 print(particle.graphicalObject.moveState)
             
             elif event.type == MOUSEBUTTONUP: 
-                particle.graphicalObject.moveState = False
+                particle.moveState = False
             
             if event.type == MOUSEMOTION: 
-                if particle.graphicalObject.moveState:
+                if particle.moveState:
                     if not movingSomething: 
                         movingSomething = True
                         particle.velocity = (0.0, 0.0)
@@ -37,14 +37,14 @@ def handleEvents(screen, particleList, fieldList, events):
                 quitState = True
 
             if event.type == MOUSEBUTTONDOWN: 
-                field.graphicalObject.moveState = field.graphicalObject.mouseCollision(event)
+                field.moveState = field.graphicalObject.mouseCollision(event)
                 print(field.graphicalObject.moveState)
             
             elif event.type == MOUSEBUTTONUP: 
-                field.graphicalObject.moveState = False
+                field.moveState = False
             
             if event.type == MOUSEMOTION: 
-                if field.graphicalObject.moveState: 
+                if field.moveState:
                     if not movingSomething: 
                         movingSomething = True
                         field.topLeft[0] += event.rel[0]
