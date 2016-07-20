@@ -2,9 +2,6 @@ from math import *
 
 from pygame import *
 
-from main.python.physicssim.graphics import GraphicalParticle, GraphicalField
-from main.python.physicssim.physics.particle import Particle
-from main.python.physicssim.physics.staticfield import StaticField
 
 
 def handleEvents(screen, particleList, fieldList, events):

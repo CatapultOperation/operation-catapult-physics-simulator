@@ -1,6 +1,6 @@
 import math
 
-from src.main.python.physicssim.graphics.GraphicalParticle import Charge, GraphicalParticle
+from main.python.physicssim.graphics.GraphicalParticle import Charge, GraphicalParticle
 
 
 class Particle:
