@@ -153,7 +153,7 @@ class Particle:
 		so that internal values can be updated and used for rendering"""
 		self.pos = [self.pos[0] + self.dx, self.pos[1] + self.dy]
 		self.velocity = self.newVelocity
-		self.graphicalObject.update(self.pos, self.mass*20, Charge.NEGATIVE if self.charge < 0 else Charge.POSITIVE)
+		self.graphicalObject.update(self.pos, self.mass*20, Charge.NEGATIVE if self.charge < 0 else Charge.POSITIVE, (0, 0, 255) if self.charge < 0 else (255, 0, 0))
 
 	def draw(self, screen):
 		"""Draws objects using GraphicalParticle"""
