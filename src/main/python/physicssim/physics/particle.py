@@ -104,15 +104,22 @@ class Particle:
 		return force[0], force[1]
 
 
+	def isInside(self, staticField):
+		"""Internally used method that checks if particle is inside a given electric field"""
+		if self.pos[0] > staticField.topLeft[0] and self.pos[0] < staticField.bottomRight[0]:
+			if self.pos[1] > staticField.topLeft[1] and self.pos[1] < staticField.bottomRight[1]:
+				return True
+		return False
 
 	def calculateNetElectricFieldForce(self, staticFieldList):
 		"""Internally used method, returns force due to influence of static electric field on particle
 		as tuple (x component, y component)"""
 		force = [0, 0]
 		for ef in staticFieldList:
-			magnitude = self.charge * ef.getStrength()
-			force[0] += magnitude*math.cos(ef.getDirection())
-			force[1] += magnitude*math.sin(ef.getDirection())
+			if self.isInside(ef):
+				magnitude = self.charge * ef.getStrength()
+				force[0] += magnitude*math.cos(ef.getDirection())
+				force[1] += magnitude*math.sin(ef.getDirection())
 		return force[0], force[1]
 
 

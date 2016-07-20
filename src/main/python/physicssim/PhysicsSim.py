@@ -14,9 +14,9 @@ fieldList = []
 
 def tempInitLists():
 	pass
-	particleList.append(Particle((300, 300), 2, .01, 1/30))
-	#particleList.append(Particle((600, 600), 1, -.01, 1/30))
-	fieldList.append(StaticField((30, 30), (400, 400), 100, Direction.EAST))
+	particleList.append(Particle((300, 300), 2, .05, 1/30))
+	particleList.append(Particle((600, 600), 1, -.05, 1/30))
+	fieldList.append(StaticField((30, 30), (400, 400), 1000, Direction.EAST))
 
 def update():
 	for p in particleList:
