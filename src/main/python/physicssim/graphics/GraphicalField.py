@@ -10,7 +10,7 @@ class Direction(Enum):
 	WEST = 4
 
 class GraphicalField:
-	def __init__(self, topLeft, bottomRight, direction, strength, color=(0, 0, 0)):
+	def __init__(self, topLeft, bottomRight, direction, strength, color=(0, 0, 255)):
 		self.spacing = strength
 		self.topLeft = topLeft
 		self.bottomRight = bottomRight
@@ -19,7 +19,7 @@ class GraphicalField:
 		self.color = color
 		self.initArrows()
 
-	def update(self, topLeft, bottomRight, direction, strength, color=(0, 0, 0)):
+	def update(self, topLeft, bottomRight, direction, strength, color=(0, 0, 255)):
 		self.spacing = strength
 		self.topLeft = topLeft
 		self.bottomRight = bottomRight
@@ -31,8 +31,9 @@ class GraphicalField:
 
 	def draw(self, screen):
 		rectSurface = pygame.Surface((self.rect.width, self.rect.height))
-		self.drawArrow(screen)
-		pygame.draw.rect(rectSurface, self.color, self.rect, 1)
+		rectSurface.fill((255, 255, 255))
+		self.drawArrow(rectSurface)
+		pygame.draw.rect(rectSurface, self.color, self.rect, 10)
 		screen.blit(rectSurface, self.topLeft)
 
 	def mouseCollision(self, event):
@@ -40,6 +41,7 @@ class GraphicalField:
 
 	def initArrows(self):
 		self.arrowEast = pygame.Surface((30, 10))
+		self.arrowEast.fill((255, 255, 255))
 		pygame.draw.line(self.arrowEast, (0, 0, 0), (2, 5), (28, 5), 1)
 		pygame.draw.line(self.arrowEast, (0, 0, 0), (28, 5), (22, 2), 1)
 		pygame.draw.line(self.arrowEast, (0, 0, 0), (28, 5), (22, 8), 1)
