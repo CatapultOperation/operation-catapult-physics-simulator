@@ -3,6 +3,7 @@ from math import *
 import pygame
 from pygame.locals import *
 import main.python.physicssim.graphics.MouseEvents as eventHandler
+from main.python.physicssim.graphics.GraphicalField import GraphicalField
 
 
 def render(screen, particleList, fieldList):

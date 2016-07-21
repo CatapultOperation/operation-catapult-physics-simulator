@@ -43,9 +43,9 @@ class GraphicalField:
 	def initArrows(self):
 		arrow = pygame.Surface((300, 100))
 		arrow.fill((255, 255, 255))
-		pygame.draw.line(arrow, (0, 0, 0), (20, 50), (280, 50), 1)
-		pygame.draw.line(arrow, (0, 0, 0), (280, 50), (220, 20), 1)
-		pygame.draw.line(arrow, (0, 0, 0), (280, 50), (220, 80), 1)
+		pygame.draw.line(arrow, (0, 0, 0), (20, 50), (280, 50), 5)
+		pygame.draw.line(arrow, (0, 0, 0), (280, 50), (220, 20), 5)
+		pygame.draw.line(arrow, (0, 0, 0), (280, 50), (220, 80), 5)
 		self.arrowNorth = pygame.transform.rotate(arrow, 90)
 		self.arrowSouth = pygame.transform.rotate(arrow, -90)
 		self.arrowEast = arrow
@@ -62,7 +62,7 @@ class GraphicalField:
 			horizontalArrows = self.rect.width // horizontalTotalHeight
 			
 			for i in range(horizontalArrows):
-				screen.blit(self.arrowNorth, ((horizontalRemainder // 2 + self.spacing // 2) + i * horizontalTotalHeight), 3)
+				screen.blit(self.arrowNorth, ((horizontalRemainder // 2 + self.spacing // 2) + i * horizontalTotalHeight, 3))
 
 		elif self.direction == Direction.SOUTH:
 			horizontalTotalHeight = self.arrowSouth.get_width() + self.spacing
@@ -70,7 +70,7 @@ class GraphicalField:
 			horizontalArrows = self.rect.width // horizontalTotalHeight
 			
 			for i in range(horizontalArrows):
-				screen.blit(self.arrowSouth, ((horizontalRemainder // 2 + self.spacing // 2) + i * horizontalTotalHeight), 3)
+				screen.blit(self.arrowSouth, ((horizontalRemainder // 2 + self.spacing // 2) + i * horizontalTotalHeight, 3))
 			
 		elif self.direction == Direction.EAST:
 			verticalTotalHeight = self.arrowEast.get_height() + self.spacing
@@ -89,14 +89,7 @@ class GraphicalField:
 				screen.blit(self.arrowWest, (3, (verticalRemainder // 2 + self.spacing // 2) + i * verticalTotalHeight))
 
 	def transformArrows(self):
-		if self.direction == Direction.NORTH:
 			self.arrowNorth = pygame.transform.scale(self.arrowNorth, (int(self.rect.width ** 0.75), self.rect.height - 6))
-
-		elif self.direction == Direction.SOUTH:
 			self.arrowSouth = pygame.transform.scale(self.arrowSouth, (int(self.rect.width ** 0.75), self.rect.height - 6))
-
-		elif self.direction == Direction.EAST:
 			self.arrowEast = pygame.transform.scale(self.arrowEast, (self.rect.width - 6, int(self.rect.height ** 0.75)))
-
-		elif self.direction == Direction.WEST:
 			self.arrowWest = pygame.transform.scale(self.arrowWest, (self.rect.width - 6, int(self.rect.height ** 0.75)))
