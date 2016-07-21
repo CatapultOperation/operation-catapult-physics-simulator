@@ -8,11 +8,12 @@ def handleEvents(screen, particleList, fieldList, events):
     quitState = False
     movingSomething = False
 
-    for particle in particleList:
-        for event in events: 
-            if event.type == QUIT:
-                quitState = True
+    for event in events:
+        if event.type == QUIT:
+            quitState = True
 
+    for particle in particleList:
+        for event in events:
             if event.type == MOUSEBUTTONDOWN: 
                 particle.moveState = particle.graphicalObject.mouseCollision(event)
             
@@ -28,10 +29,7 @@ def handleEvents(screen, particleList, fieldList, events):
                         particle.pos[1] += event.rel[1]
                         
     for field in fieldList:
-        for event in events: 
-            if event.type == QUIT:
-                quitState = True
-
+        for event in events:
             if event.type == MOUSEBUTTONDOWN: 
                 field.moveState = field.graphicalObject.mouseCollision(event)
             

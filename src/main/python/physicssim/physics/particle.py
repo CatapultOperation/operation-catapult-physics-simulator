@@ -126,7 +126,7 @@ class Particle:
 				magnitude = self.charge * ef.getStrength()
 				force[0] += magnitude*math.cos(ef.getDirection())
 				force[1] += magnitude*math.sin(ef.getDirection())
-		return force[0], force[1]
+		return force[0], -force[1]
 
 
 	def calculateDisplacement(self, particleList, staticFieldList):
