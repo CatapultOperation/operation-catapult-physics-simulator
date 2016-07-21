@@ -17,6 +17,7 @@ class DraggableParticle:
 		else:
 			pic = pygame.image.load(self.dir + "\\positiveparticle.png")
 		pic = pygame.transform.scale(pic, (40, 40))
+		pic.set_colorkey((255, 255, 255))
 		screen.blit(pic, self.pos)
 
 	def getObject(self):
