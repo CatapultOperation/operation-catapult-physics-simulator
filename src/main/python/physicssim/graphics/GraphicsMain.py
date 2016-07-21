@@ -10,10 +10,10 @@ def render(screen, particleList, fieldList):
 	and fieldList (list of physical fields"""
 	screen.fill((255, 255, 255))
 
-	for f in fieldList:
-		f.draw(screen)
-	for p in particleList:
-		p.draw(screen)
+	for field in fieldList:
+		field.draw(screen)
+	for particle in particleList:
+		particle.draw(screen)
 
 	pygame.display.flip()
 
