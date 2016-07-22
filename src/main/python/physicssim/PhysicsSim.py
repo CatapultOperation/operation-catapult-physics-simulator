@@ -8,6 +8,7 @@ from main.python.physicssim.physics.particle import Particle
 from main.python.physicssim.physics.staticfield import StaticField
 from main.python.physicssim.menuItems.draggableField import DraggableField
 from main.python.physicssim.menuItems.draggableParticle import DraggableParticle
+from main.python.physicssim.graphics.GraphicalParticle import Charge
 
 
 pygame.init()
@@ -20,12 +21,12 @@ draggables = []
 
 def makeDraggables():
 	draggables.clear()
-	draggables.append(DraggableParticle((10, 10), 1, .01, 1/30))
-	draggables.append(DraggableParticle((10, 60), 1, -.01, 1 / 30))
-	draggables.append(DraggableField((10, 110), Direction.NORTH, 200, 200))
-	draggables.append(DraggableField((10, 160), Direction.EAST, 200, 200))
-	draggables.append(DraggableField((10, 210), Direction.SOUTH, 200, 200))
-	draggables.append(DraggableField((10, 260), Direction.WEST, 200, 200))
+	draggables.append(DraggableParticle((10, 10), Charge.POSITIVE))
+	draggables.append(DraggableParticle((10, 60), Charge.NEGATIVE))
+	draggables.append(DraggableField((10, 110), Direction.NORTH))
+	draggables.append(DraggableField((10, 160), Direction.EAST))
+	draggables.append(DraggableField((10, 210), Direction.SOUTH))
+	draggables.append(DraggableField((10, 260), Direction.WEST))
 
 
 def tempInitLists():
