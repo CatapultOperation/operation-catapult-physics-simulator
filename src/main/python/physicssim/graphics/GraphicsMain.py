@@ -17,12 +17,8 @@ def render(screen, particleList, fieldList, draggables):
 	for d in draggables:
 		d.draw(screen)
 
-	for field in fieldList:
-		field.draw(screen)
-	for particle in particleList:
-		particle.draw(screen)
 
 	pygame.display.flip()
 
-def events(screen, particleList, fieldList, events):
-	return eventHandler.handleEvents(screen, particleList, fieldList, events)
+def events(screen, particleList, fieldList, draggables, events):
+	return eventHandler.handleEvents(screen, particleList, fieldList, draggables, events)
