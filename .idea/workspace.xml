@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2ccf70d-59f9-48ef-8f06-5a476e12a923" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/python/physicssim/PhysicsSim.py" afterPath="$PROJECT_DIR$/src/main/python/physicssim/PhysicsSim.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/python/physicssim/graphics/GraphicalButton.py" afterPath="$PROJECT_DIR$/src/main/python/physicssim/graphics/GraphicalButton.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/python/physicssim/graphics/GraphicalUI.py" afterPath="$PROJECT_DIR$/src/main/python/physicssim/graphics/GraphicalUI.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/python/physicssim/graphics/GraphicsMain.py" afterPath="$PROJECT_DIR$/src/main/python/physicssim/graphics/GraphicsMain.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/python/physicssim/graphics/MouseEvents.py" afterPath="$PROJECT_DIR$/src/main/python/physicssim/graphics/MouseEvents.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/python/physicssim/menuItems/Size.py" afterPath="$PROJECT_DIR$/src/main/python/physicssim/menuItems/Size.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/python/physicssim/menuItems/Strength.py" afterPath="$PROJECT_DIR$/src/main/python/physicssim/menuItems/Strength.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/python/physicssim/menuItems/draggableField.py" afterPath="$PROJECT_DIR$/src/main/python/physicssim/menuItems/draggableField.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/python/physicssim/menuItems/draggableParticle.py" afterPath="$PROJECT_DIR$/src/main/python/physicssim/menuItems/draggableParticle.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/python/physicssim/physics/particle.py" afterPath="$PROJECT_DIR$/src/main/python/physicssim/physics/particle.py" />
     </list>
     <ignored path="operation-catapult-physics-simulator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,7 +35,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PhysicsSim.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PhysicsSim.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/python/physicssim/PhysicsSim.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
@@ -128,11 +118,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GraphicalUI.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GraphicalUI.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/python/physicssim/graphics/GraphicalUI.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="56" column="43" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
+            <state relative-caret-position="630">
+              <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -175,12 +165,12 @@
         <option value="$PROJECT_DIR$/src/main/python/physicssim/menuItems/Strength.py" />
         <option value="$PROJECT_DIR$/src/main/python/physicssim/menuItems/Size.py" />
         <option value="$PROJECT_DIR$/src/main/python/physicssim/graphics/GraphicsMain.py" />
-        <option value="$PROJECT_DIR$/src/main/python/physicssim/graphics/GraphicalUI.py" />
         <option value="$PROJECT_DIR$/src/main/python/physicssim/physics/particle.py" />
         <option value="$PROJECT_DIR$/src/main/python/physicssim/menuItems/draggableParticle.py" />
         <option value="$PROJECT_DIR$/src/main/python/physicssim/menuItems/draggableField.py" />
         <option value="$PROJECT_DIR$/src/main/python/physicssim/graphics/MouseEvents.py" />
         <option value="$PROJECT_DIR$/src/main/python/physicssim/PhysicsSim.py" />
+        <option value="$PROJECT_DIR$/src/main/python/physicssim/graphics/GraphicalUI.py" />
       </list>
     </option>
   </component>
@@ -574,7 +564,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="2182" height="1402" extended-state="7" />
+    <frame x="-11" y="-11" width="2182" height="1402" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11064815" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -582,7 +572,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30273753" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30273753" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1002,24 +992,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/python/physicssim/graphics/GraphicalUI.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="56" column="43" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/python/physicssim/physics/particle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/python/physicssim/menuItems/draggableParticle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -1056,6 +1028,24 @@
           <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/python/physicssim/physics/particle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/python/physicssim/graphics/GraphicalUI.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
