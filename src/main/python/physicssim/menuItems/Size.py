@@ -36,4 +36,3 @@ class Size(Enum):
 	@classmethod
 	def getLargeSelectedImg(cls):
 		return pygame.image.load(cls.getDIr() + "\\large_selected.png")
-	
