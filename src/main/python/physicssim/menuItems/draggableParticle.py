@@ -15,11 +15,7 @@ class DraggableParticle:
 		self.dir = os.path.dirname(os.path.dirname(os.path.dirname((os.path.dirname(thisdir)))))
 
 	def draw(self, screen):
-<<<<<<< HEAD
-		if self.charge == 2:
-=======
 		if self.charge == Charge.NEGATIVE:
->>>>>>> 1818ab1da8246a02b478ae51e80f67e0b6b339b3
 			pic = pygame.image.load(self.dir + "\\negativeparticle.png")
 		else:
 			pic = pygame.image.load(self.dir + "\\positiveparticle.png")
@@ -53,4 +49,4 @@ class DraggableParticle:
 		if self.charge == Charge.NEGATIVE:
 			charge *= -1
 
-		return Particle(self.pos, mass, self.charge, timeInterval)
+		return Particle(self.pos, mass, charge, timeInterval)

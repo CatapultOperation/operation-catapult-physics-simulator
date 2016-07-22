@@ -14,7 +14,7 @@ class Particle:
 		self.charge = charge
 		self.timeInterval = timeInterval
 		#setting radius to 20x the mass of particle, can change later
-		if self.charge < 0: 
+		if self.charge < 0:
 			self.graphicalObject = GraphicalParticle(self.pos, self.mass*20, Charge.NEGATIVE, (0, 0, 255))
 		else: 
 			self.graphicalObject = GraphicalParticle(self.pos, self.mass*20, Charge.POSITIVE, (255, 0, 0))

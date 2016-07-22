@@ -3,6 +3,7 @@ import os
 import pygame
 
 class Strength(Enum):
+	NONE = 0
 	LOW = 1
 	MED = 2
 	HIGH = 3
@@ -15,24 +16,30 @@ class Strength(Enum):
 
 	@classmethod
 	def getLowImg(cls):
-		return pygame.image.load(cls.getDIr() + "\\low.png")
+		surf =  pygame.image.load(cls.getDir() + "\\low.png")
+		return pygame.transform.scale(surf, (50, 50))
 
 	@classmethod
 	def getLowSelectedImg(cls):
-		return pygame.image.load(cls.getDIr() + "\\low_selected.png")
+		surf = pygame.image.load(cls.getDir() + "\\low_selected.png")
+		return pygame.transform.scale(surf, (50, 50))
 
 	@classmethod
 	def getMedImg(cls):
-		return pygame.image.load(cls.getDIr() + "\\med.png")
+		surf = pygame.image.load(cls.getDir() + "\\med.png")
+		return pygame.transform.scale(surf, (50, 50))
 
 	@classmethod
 	def getMedSelectedImg(cls):
-		return pygame.image.load(cls.getDIr() + "\\med_selected.png")
+		surf = pygame.image.load(cls.getDir() + "\\med_selected.png")
+		return pygame.transform.scale(surf, (50, 50))
 
 	@classmethod
 	def getHighImg(cls):
-		return pygame.image.load(cls.getDIr() + "\\high.png")
+		surf = pygame.image.load(cls.getDir() + "\\high.png")
+		return pygame.transform.scale(surf, (50, 50))
 
 	@classmethod
 	def getHighSelectedImg(cls):
-		return pygame.image.load(cls.getDIr() + "\\high_selected.png")
+		surf = pygame.image.load(cls.getDir() + "\\high_selected.png")
+		return pygame.transform.scale(surf, (50, 50))

@@ -1,16 +1,19 @@
 from math import *
 import copy
 from pygame import *
+from main.python.physicssim.menuItems.draggableParticle import DraggableParticle
+from main.python.physicssim.menuItems.draggableField import DraggableField
 
 
-
-def handleEvents(screen, particleList, fieldList, draggables, events):
+def handleEvents(screen, particleList, fieldList, draggables, graphUi, events):
     quitState = False
     movingSomething = False
 
     for event in events:
         if event.type == QUIT:
             quitState = True
+        elif event.type == MOUSEBUTTONDOWN:
+            graphUi.mouseCollision(event)
 
     for particle in particleList:
         for event in events:
@@ -55,9 +58,15 @@ def handleEvents(screen, particleList, fieldList, draggables, events):
                     dragToAdd.moveState = False
 
             elif event.type == MOUSEBUTTONUP:
-                #TODO: make object using ui selections, then remove current draggable from draggables list.
-                draggable.moveState = False
-                break #gets out of loop so that removed draggable is not used in the rest of the loop
+                if draggable.moveState:
+                    if isinstance(draggable, DraggableParticle):
+                        particleList.append(draggable.getObject(graphUi.size, graphUi.strength, 1/30))
+                    else:
+                        fieldList.append(draggable.getObject(graphUi.size, graphUi.strength))
+
+                    draggable.moveState = False
+                    draggables.remove(draggable)
+                    break #gets out of loop so that removed draggable is not used in the rest of the loop
 
             if event.type == MOUSEMOTION:
                 if draggable.moveState:

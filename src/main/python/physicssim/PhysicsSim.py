@@ -2,21 +2,22 @@ import pygame
 import os
 
 import main.python.physicssim.graphics.GraphicsMain as graphics
-from main.python.physicssim.graphics.GraphicalField import Direction,\
-	GraphicalField
+from main.python.physicssim.graphics.GraphicalField import Direction,GraphicalField
 from main.python.physicssim.physics.particle import Particle
 from main.python.physicssim.physics.staticfield import StaticField
 from main.python.physicssim.menuItems.draggableField import DraggableField
 from main.python.physicssim.menuItems.draggableParticle import DraggableParticle
 from main.python.physicssim.graphics.GraphicalParticle import Charge
+from main.python.physicssim.graphics.GraphicalUI import GraphicalUI
 
 
 pygame.init()
 clock = pygame.time.Clock()
-screen = pygame.display.set_mode((800, 800))
+screen = pygame.display.set_mode((1200, 800))
 particleList = []
 fieldList = []
 draggables = []
+graphUi = GraphicalUI()
 
 
 def makeDraggables():
@@ -42,11 +43,11 @@ def update():
 	for p in particleList:
 		p.finalizeValues()
 
-	graphics.render(screen, particleList, fieldList, draggables)
+	graphics.render(screen, particleList, fieldList, draggables, graphUi)
 	events = pygame.event.get()
 	
 	#concats lists because event handler doesn't need them in separate lists
-	return graphics.events(screen, particleList, fieldList, draggables, events)
+	return graphics.events(screen, particleList, fieldList, draggables, graphUi, events)
 
 def mainLoop():
 	while True:
@@ -55,5 +56,5 @@ def mainLoop():
 		clock.tick(30)
 
 makeDraggables()
-tempInitLists()
+#tempInitLists()
 mainLoop()

@@ -56,4 +56,4 @@ class DraggableField:
 		else:
 			power = 20000
 
-		return StaticField(self.pos, (self.pos[0]+width, self.pos[1]+height), power, self.direction)
+		return StaticField(self.pos, [self.pos[0]+width, self.pos[1]+height], power, self.direction)

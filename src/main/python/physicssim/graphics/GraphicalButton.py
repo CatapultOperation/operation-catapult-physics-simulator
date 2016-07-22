@@ -1,7 +1,9 @@
-from main.python.physicssim.graphics.GraphicalUI import Size, Strength
+from main.python.physicssim.menuItems.Size import Size
+from main.python.physicssim.menuItems.Strength import Strength
 
 
-class GraphicalButton():
+
+class GraphicalButton:
 
     
     def __init__(self, rect, size=Size.NONE, strength=Strength.NONE):
