@@ -1,5 +1,5 @@
 from math import *
-
+import copy
 from pygame import *
 
 
@@ -45,11 +45,14 @@ def handleEvents(screen, particleList, fieldList, draggables, events):
                         field.bottomRight[0] += event.rel[0]
                         field.bottomRight[1] += event.rel[1]
 
+    dragToAdd = None
     for draggable in draggables:
         for event in events:
             if event.type == MOUSEBUTTONDOWN:
-                #TODO: put mouseCollision method in draggable classes
                 draggable.moveState = draggable.mouseCollision(event)
+                if draggable.moveState:
+                    dragToAdd = copy.deepcopy(draggable)
+                    dragToAdd.moveState = False
 
             elif event.type == MOUSEBUTTONUP:
                 #TODO: make object using ui selections, then remove current draggable from draggables list.
@@ -62,5 +65,8 @@ def handleEvents(screen, particleList, fieldList, draggables, events):
                         movingSomething = True
                         draggable.pos[0] += event.rel[0]
                         draggable.pos[1] += event.rel[1]
+    if dragToAdd is not None:
+        draggables.append(dragToAdd)
+
                     
     return quitState

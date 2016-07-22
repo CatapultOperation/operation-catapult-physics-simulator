@@ -30,6 +30,12 @@ class DraggableField:
 		pic.set_colorkey((255, 255, 255))
 		screen.blit(pic, self.pos)
 
+	def mouseCollision(self, event):
+		if self.pos[0] < event.pos[0] < self.pos[0] + 40:
+			if self.pos[1] < event.pos[1] < self.pos[1] + 40:
+				return True
+		return False
+
 	def getObject(self, size, strength):
 		"""Returns object to add to list for drawing;
 		pass size as Size enum, pass strength as Strength enum"""

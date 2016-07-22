@@ -15,13 +15,19 @@ class DraggableParticle:
 		self.dir = os.path.dirname(os.path.dirname(os.path.dirname((os.path.dirname(thisdir)))))
 
 	def draw(self, screen):
-		if self.charge < 0:
+		if self.charge == Charge.NEGATIVE:
 			pic = pygame.image.load(self.dir + "\\negativeparticle.png")
 		else:
 			pic = pygame.image.load(self.dir + "\\positiveparticle.png")
 		pic = pygame.transform.scale(pic, (40, 40))
 		pic.set_colorkey((255, 255, 255))
 		screen.blit(pic, self.pos)
+
+	def mouseCollision(self, event):
+		if self.pos[0] < event.pos[0] < self.pos[0] + 40:
+			if self.pos[1] < event.pos[1] < self.pos[1] + 40:
+				return True
+		return False
 
 	def getObject(self, size, strength, timeInterval):
 		"""Returns object to add to list for drawing;

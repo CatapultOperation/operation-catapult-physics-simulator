@@ -17,10 +17,6 @@ def render(screen, particleList, fieldList, draggables):
 	for d in draggables:
 		d.draw(screen)
 
-	for field in fieldList:
-		field.draw(screen)
-	for particle in particleList:
-		particle.draw(screen)
 
 	pygame.display.flip()
 

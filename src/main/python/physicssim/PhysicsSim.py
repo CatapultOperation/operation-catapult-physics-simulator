@@ -21,12 +21,12 @@ draggables = []
 
 def makeDraggables():
 	draggables.clear()
-	draggables.append(DraggableParticle((10, 10), Charge.POSITIVE))
-	draggables.append(DraggableParticle((10, 60), Charge.NEGATIVE))
-	draggables.append(DraggableField((10, 110), Direction.NORTH))
-	draggables.append(DraggableField((10, 160), Direction.EAST))
-	draggables.append(DraggableField((10, 210), Direction.SOUTH))
-	draggables.append(DraggableField((10, 260), Direction.WEST))
+	draggables.append(DraggableParticle([10, 10], Charge.POSITIVE))
+	draggables.append(DraggableParticle([10, 60], Charge.NEGATIVE))
+	draggables.append(DraggableField([10, 110], Direction.NORTH))
+	draggables.append(DraggableField([10, 160], Direction.EAST))
+	draggables.append(DraggableField([10, 210], Direction.SOUTH))
+	draggables.append(DraggableField([10, 260], Direction.WEST))
 
 
 def tempInitLists():
