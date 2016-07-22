@@ -46,7 +46,7 @@ def update():
 	events = pygame.event.get()
 	
 	#concats lists because event handler doesn't need them in separate lists
-	return graphics.events(screen, particleList, fieldList, events)
+	return graphics.events(screen, particleList, fieldList, draggables, events)
 
 def mainLoop():
 	while True:

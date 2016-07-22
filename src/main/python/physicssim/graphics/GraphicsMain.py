@@ -24,5 +24,5 @@ def render(screen, particleList, fieldList, draggables):
 
 	pygame.display.flip()
 
-def events(screen, particleList, fieldList, events):
-	return eventHandler.handleEvents(screen, particleList, fieldList, events)
+def events(screen, particleList, fieldList, draggables, events):
+	return eventHandler.handleEvents(screen, particleList, fieldList, draggables, events)
