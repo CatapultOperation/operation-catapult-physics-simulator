@@ -15,8 +15,8 @@ class GraphicalUI:
     def __init__(self):
         self.xOffset = 10
         self.yOffset = 260
-        self.strength = Strength.NONE
-        self.size = Size.NONE
+        self.strength = Strength.LOW
+        self.size = Size.SMALL
         self.sizeButtonRectList = []
         self.strengthButtonRectList = []
         

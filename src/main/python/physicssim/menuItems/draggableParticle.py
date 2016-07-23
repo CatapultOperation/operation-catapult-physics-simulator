@@ -8,7 +8,6 @@ from main.python.physicssim.menuItems.Strength import Strength
 class DraggableParticle:
 	def __init__(self, pos, charge):
 		"""Pass pos as list [x, y], pass charge as Charge enum"""
-		self.moveState = False
 		self.pos = pos
 		self.charge = charge
 		thisdir = os.path.dirname(__file__)
@@ -40,13 +39,13 @@ class DraggableParticle:
 			mass = 3
 
 		if strength == Strength.LOW:
-			charge = .01
-		elif strength == Strength.MED:
 			charge = .02
-		else:
+		elif strength == Strength.MED:
 			charge = .03
+		else:
+			charge = .05
 
 		if self.charge == Charge.NEGATIVE:
 			charge *= -1
 
-		return Particle(self.pos, mass, charge, timeInterval)
+		return Particle([self.pos[0] + 20, self.pos[1] + 20], mass, charge, timeInterval)

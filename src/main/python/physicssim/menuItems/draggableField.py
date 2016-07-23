@@ -1,5 +1,6 @@
 import pygame
 import os
+import copy
 
 from main.python.physicssim.graphics.GraphicalField import Direction
 from main.python.physicssim.physics.staticfield import StaticField
@@ -10,7 +11,6 @@ class DraggableField:
 	def __init__(self, pos, direction):
 		"""Pos passed as list [x, y], direction as enum from GraphicsField file,
 		width and height are size of object to be created"""
-		self.moveState = False
 		self.pos = pos
 		self.direction = direction
 		thisdir = os.path.dirname(__file__)
@@ -50,10 +50,13 @@ class DraggableField:
 			height = 400
 
 		if strength == Strength.LOW:
-			power = 6000
+			power = 10000
 		elif strength == Strength.MED:
-			power = 12000
+			power = 16000
 		else:
-			power = 20000
+			power = 30000
 
-		return StaticField(self.pos, [self.pos[0]+width, self.pos[1]+height], power, self.direction)
+		pos = copy.deepcopy(self.pos)
+		newf = StaticField(pos, [pos[0]+width, pos[1]+height], power, self.direction)
+		newf.graphicalObject.offSet = [pos[0], pos[1]]
+		return newf

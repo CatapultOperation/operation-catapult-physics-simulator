@@ -11,7 +11,8 @@ class Direction(Enum):
 	WEST = 4
 
 class GraphicalField:
-	def __init__(self, topLeft, bottomRight, direction, strength, color=(0, 0, 255)):
+	def __init__(self, topLeft, bottomRight, direction, strength, color=(0, 255, 0)):
+		self.offSet = [0, 0]
 		self.spacing = strength // 50
 		self.topLeft = topLeft
 		self.bottomRight = bottomRight
@@ -21,7 +22,7 @@ class GraphicalField:
 		self.visualRect = pygame.Rect((0, 0), (self.rect.width, self.rect.height))
 		self.initArrows()
 
-	def update(self, topLeft, bottomRight, direction, strength, color=(0, 0, 255)):
+	def update(self, topLeft, bottomRight, direction, strength, color=(0, 255, 0)):
 		self.spacing = strength // 50
 		self.topLeft = topLeft
 		self.bottomRight = bottomRight
@@ -38,7 +39,7 @@ class GraphicalField:
 		screen.blit(rectSurface, self.topLeft)
 
 	def mouseCollision(self, event):
-		return self.rect.collidepoint(event.pos)
+		return self.rect.collidepoint(event.pos[0] - self.topLeft[0] + self.offSet[0], event.pos[1] - self.topLeft[1] + self.offSet[1])
 
 	def initArrows(self):
 		arrow = pygame.Surface((300, 100))
@@ -52,44 +53,58 @@ class GraphicalField:
 		self.arrowWest = pygame.transform.rotate(arrow, 180)
 	
 	def drawArrow(self, screen):
-		self.transformArrows()
-		
-		
-		
-		if self.direction == Direction.NORTH:
-			horizontalTotalHeight = self.arrowNorth.get_width() + self.spacing
-			horizontalRemainder = self.rect.width % horizontalTotalHeight
-			horizontalArrows = self.rect.width // horizontalTotalHeight
-			
-			for i in range(horizontalArrows):
-				screen.blit(self.arrowNorth, ((horizontalRemainder // 2 + self.spacing // 2) + i * horizontalTotalHeight, 3))
 
-		elif self.direction == Direction.SOUTH:
-			horizontalTotalHeight = self.arrowSouth.get_width() + self.spacing
-			horizontalRemainder = self.rect.width % horizontalTotalHeight
-			horizontalArrows = self.rect.width // horizontalTotalHeight
-			
-			for i in range(horizontalArrows):
-				screen.blit(self.arrowSouth, ((horizontalRemainder // 2 + self.spacing // 2) + i * horizontalTotalHeight, 3))
-			
-		elif self.direction == Direction.EAST:
-			verticalTotalHeight = self.arrowEast.get_height() + self.spacing
-			verticalRemainder = self.rect.height % verticalTotalHeight
-			verticalArrows = self.rect.height // verticalTotalHeight
-			
-			for i in range(verticalArrows):
-				screen.blit(self.arrowEast, (3, (verticalRemainder // 2 + self.spacing // 2) + i * verticalTotalHeight))
-			
+		if self.direction == Direction.EAST:
+			arrow = pygame.transform.scale(self.arrowEast, (self.rect.width, int(self.rect.width/3)))
+			screen.blit(arrow, (0, (screen.get_height() - arrow.get_height()) / 2))
 		elif self.direction == Direction.WEST:
-			verticalTotalHeight = self.arrowWest.get_height() + self.spacing
-			verticalRemainder = self.rect.height % verticalTotalHeight
-			verticalArrows = self.rect.height // verticalTotalHeight
-			
-			for i in range(verticalArrows):
-				screen.blit(self.arrowWest, (3, (verticalRemainder // 2 + self.spacing // 2) + i * verticalTotalHeight))
+			arrow = pygame.transform.scale(self.arrowWest, (self.rect.width, int(self.rect.width/3)))
+			screen.blit(arrow, (0, (screen.get_height() - arrow.get_height()) / 2))
+		elif self.direction == Direction.NORTH:
+			arrow = pygame.transform.scale(self.arrowNorth, (int(self.rect.height/3), self.rect.height))
+			screen.blit(arrow, (((screen.get_width() - arrow.get_width()) / 2), 0))
+		elif self.direction == Direction.SOUTH:
+			arrow = pygame.transform.scale(self.arrowSouth, (int(self.rect.height/3), self.rect.height))
+			screen.blit(arrow, (((screen.get_width() - arrow.get_width()) / 2), 0))
 
-	def transformArrows(self):
-			self.arrowNorth = pygame.transform.scale(self.arrowNorth, (int(self.rect.width ** 0.75), self.rect.height - 6))
-			self.arrowSouth = pygame.transform.scale(self.arrowSouth, (int(self.rect.width ** 0.75), self.rect.height - 6))
-			self.arrowEast = pygame.transform.scale(self.arrowEast, (self.rect.width - 6, int(self.rect.height ** 0.75)))
-			self.arrowWest = pygame.transform.scale(self.arrowWest, (self.rect.width - 6, int(self.rect.height ** 0.75)))
+		# self.transformArrows()
+		#
+		#
+		#
+		# if self.direction == Direction.NORTH:
+		# 	horizontalTotalHeight = self.arrowNorth.get_width() + self.spacing
+		# 	horizontalRemainder = self.rect.width % horizontalTotalHeight
+		# 	horizontalArrows = self.rect.width // horizontalTotalHeight
+		#
+		# 	for i in range(horizontalArrows):
+		# 		screen.blit(self.arrowNorth, ((horizontalRemainder // 2 + self.spacing // 2) + i * horizontalTotalHeight, 3))
+		#
+		# elif self.direction == Direction.SOUTH:
+		# 	horizontalTotalHeight = self.arrowSouth.get_width() + self.spacing
+		# 	horizontalRemainder = self.rect.width % horizontalTotalHeight
+		# 	horizontalArrows = self.rect.width // horizontalTotalHeight
+		#
+		# 	for i in range(horizontalArrows):
+		# 		screen.blit(self.arrowSouth, ((horizontalRemainder // 2 + self.spacing // 2) + i * horizontalTotalHeight, 3))
+		#
+		# elif self.direction == Direction.EAST:
+		# 	verticalTotalHeight = self.arrowEast.get_height() + self.spacing
+		# 	verticalRemainder = self.rect.height % verticalTotalHeight
+		# 	verticalArrows = self.rect.height // verticalTotalHeight
+		#
+		# 	for i in range(verticalArrows):
+		# 		screen.blit(self.arrowEast, (3, (verticalRemainder // 2 + self.spacing // 2) + i * verticalTotalHeight))
+		#
+		# elif self.direction == Direction.WEST:
+		# 	verticalTotalHeight = self.arrowWest.get_height() + self.spacing
+		# 	verticalRemainder = self.rect.height % verticalTotalHeight
+		# 	verticalArrows = self.rect.height // verticalTotalHeight
+		#
+		# 	for i in range(verticalArrows):
+		# 		screen.blit(self.arrowWest, (3, (verticalRemainder // 2 + self.spacing // 2) + i * verticalTotalHeight))
+
+	# def transformArrows(self):
+	# 		self.arrowNorth = pygame.transform.scale(self.arrowNorth, (int(self.rect.width ** 0.75), self.rect.height - 6))
+	# 		self.arrowSouth = pygame.transform.scale(self.arrowSouth, (int(self.rect.width ** 0.75), self.rect.height - 6))
+	# 		self.arrowEast = pygame.transform.scale(self.arrowEast, (self.rect.width - 6, int(self.rect.height ** 0.75)))
+	# 		self.arrowWest = pygame.transform.scale(self.arrowWest, (self.rect.width - 6, int(self.rect.height ** 0.75)))
