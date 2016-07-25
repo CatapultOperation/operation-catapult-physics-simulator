@@ -1,1 +1,3 @@
 TBD
+*.pyc
+*/__pycache__/
